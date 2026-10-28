@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>代码练习场 | Python 学习网站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">P</div>
+      <span>Python<span class="dot">.</span>学习</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">首页</a>
+      <a href="index.html#courses">课程</a>
+      <a href="index.html#path">学习路径</a>
+      <a href="playground.html" class="active">代码练习场</a>
+      <a href="lesson.html?id=intro" class="nav-cta">开始学习</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="切换菜单">☰</button>
+  </div>
+</nav>
+
+<div class="playground-layout">
+  <!-- 编辑器 -->
+  <section class="pg-panel">
+    <div class="pg-head">
+      <span style="font-weight:600;color:var(--text);">main.py</span>
+      <span class="spacer"></span>
+      <button class="pg-btn" id="clearBtn">清空</button>
+      <button class="pg-btn" id="formatBtn">整理格式</button>
+    </div>
+
+    <div class="examples-bar" id="examplesBar">
+      <span style="font-size:12px;color:var(--text-faint);align-self:center;margin-right:4px;">示例:</span>
+    </div>
+
+    <div class="pg-editor">
+      <textarea id="codeEditor" spellcheck="false" placeholder="# 在这里编写 Python 代码,然后点击「运行」"></textarea>
+    </div>
+
+    <div class="pg-status">
+      <span class="spinner" id="spinner"></span>
+      <span id="statusText">正在加载 Python 运行时…</span>
+      <span class="spacer" style="flex:1;"></span>
+      <span id="pythonVersion"></span>
+    </div>
+  </section>
+
+  <!-- 输出 -->
+  <section class="pg-panel">
+    <div class="pg-head">
+      <span style="font-weight:600;color:var(--text);">输出</span>
+      <span class="spacer"></span>
+      <button class="pg-btn run" id="runBtn" disabled>▶ 运行</button>
+    </div>
+    <div class="pg-output" id="output">
+      <div class="out-info">输出会显示在这里。点击左上角「运行」按钮执行代码。</div>
+    </div>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+<script src="assets/js/playground.js"></script>
+</body>
+</html>

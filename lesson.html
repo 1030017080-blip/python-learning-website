@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>课程学习 | Python 学习网站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">P</div>
+      <span>Python<span class="dot">.</span>学习</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html">首页</a>
+      <a href="index.html#courses">课程</a>
+      <a href="index.html#path">学习路径</a>
+      <a href="playground.html">代码练习场</a>
+      <a href="#" class="nav-cta" id="navCta">开始学习</a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="切换菜单">☰</button>
+  </div>
+</nav>
+
+<div class="lesson-layout">
+  <!-- 侧边栏 -->
+  <aside class="sidebar">
+    <div class="sidebar-title">课程目录</div>
+    <div id="sidebarList"></div>
+    <div class="progress-box">
+      <div class="row">
+        <span>学习进度</span>
+        <span id="progressText">0 / 12</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 课程正文 -->
+  <main class="lesson-main">
+    <header class="lesson-header">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <span class="course-id" id="lessonNum">01</span>
+        <span class="course-level lv-beginner" id="lessonLevel">入门</span>
+        <span style="font-size:13px;color:var(--text-faint);">⏱ <span id="lessonDuration">20 分钟</span></span>
+      </div>
+      <h1 id="lessonTitle">课程标题</h1>
+      <p class="meta" id="lessonSubtitle"></p>
+    </header>
+
+    <div class="lesson-content" id="lessonContent"></div>
+
+    <!-- 底部导航 -->
+    <nav class="lesson-nav">
+      <a id="prevLink" href="#">
+        <div class="dir">← 上一课</div>
+        <div class="name" id="prevName">—</div>
+      </a>
+      <a id="nextLink" href="#" class="next">
+        <div class="dir">下一课 →</div>
+        <div class="name" id="nextName">—</div>
+      </a>
+    </nav>
+  </main>
+</div>
+
+<!-- 课程数据 -->
+<script src="assets/js/data/lessons-01-04.js"></script>
+<script src="assets/js/data/lessons-05-08.js"></script>
+<script src="assets/js/data/lessons-09-12.js"></script>
+<script src="assets/js/lesson.js"></script>
+</body>
+</html>

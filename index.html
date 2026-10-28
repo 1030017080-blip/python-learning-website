@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python 学习网站 | 从零基础到实战</title>
+  <meta name="description" content="免费的 Python 编程学习网站,12 节完整课程,从环境搭建到综合实战,支持浏览器内直接运行 Python 代码">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">P</div>
+      <span>Python<span class="dot">.</span>学习</span>
+    </a>
+
+    <div class="nav-links" id="navLinks">
+      <a href="index.html" class="active">首页</a>
+      <a href="#courses">课程</a>
+      <a href="#path">学习路径</a>
+      <a href="playground.html">代码练习场</a>
+      <a href="lesson.html?id=intro" class="nav-cta">开始学习</a>
+    </div>
+
+    <button class="nav-toggle" id="navToggle" aria-label="切换菜单">☰</button>
+  </div>
+</nav>
+
+<!-- 英雄区 -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="eyebrow">免费 · 交互式 · 零基础友好</div>
+        <h1>用 Python 把想法变成代码</h1>
+        <p class="hero-lead">12 节完整课程,涵盖环境搭建、基础语法、面向对象、文件操作和综合实战。浏览器内直接运行代码,无需安装任何东西。</p>
+        <div class="hero-actions">
+          <a href="lesson.html?id=intro" class="btn btn-primary">从第一课开始</a>
+          <a href="#courses" class="btn btn-ghost">查看全部课程</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>12</strong><span>节完整课程</span></div>
+          <div><strong>120+</strong><span>个代码示例</span></div>
+          <div><strong>浏览器</strong><span>内即可练习</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="code-card">
+          <div class="code-card-head">
+            <div class="dot-red"></div>
+            <div class="dot-yellow"></div>
+            <div class="dot-green"></div>
+            <span class="file">hello.py</span>
+          </div>
+          <pre>
+<span class="tok-kw">def</span> <span class="tok-fn">greet</span>(<span class="tok-var">name</span>):
+    <span class="tok-com"># 你的第一行 Python 代码</span>
+    <span class="tok-kw">return</span> f<span class="tok-str">"Hello, {name}!"</span>
+
+<span class="tok-kw">print</span>(<span class="tok-fn">greet</span>(<span class="tok-str">"Python 学习者"</span>))
+          </pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 特性 -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">为什么选这个网站</span>
+      <h2 class="section-title">边学边练,更快上手</h2>
+      <p class="section-sub">每节课都配有代码示例、测验和动手练习,让你不只是「看」,更会「写」。</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">🚀</div>
+        <h3>零环境门槛</h3>
+        <p>浏览器内置 Python 运行环境,打开网页就能写代码,不需要安装 Python 或配置编辑器。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📚</div>
+        <h3>12 节完整课程</h3>
+        <p>从变量、数据类型到面向对象、文件操作,再到调用天气 API 的综合实战,循序渐进。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">✅</div>
+        <h3>测验与练习</h3>
+        <p>每节课配有选择题测验和动手编程练习,附参考答案,帮你检查学习成果。</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">💡</div>
+        <h3>中文友好</h3>
+        <p>全站中文编写,语法解释、错误提示和示例全部本地化,适合中文母语学习者。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 课程预览 -->
+<section class="section" id="courses" style="padding-top: 60px;">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">课程目录</span>
+      <h2 class="section-title">从零基础到实战应用</h2>
+      <p class="section-sub">建议按顺序学习,每节课约 20-45 分钟,可随时暂停和回顾。</p>
+    </div>
+
+    <div class="course-grid" id="courseGrid">
+      <!-- 课程卡片由 JS 渲染 -->
+    </div>
+
+    <div style="text-align: center; margin-top: 30px;">
+      <a href="#path" class="btn btn-ghost">查看详细学习路径</a>
+    </div>
+  </div>
+</section>
+
+<!-- 学习路径 -->
+<section class="section" id="path" style="background: var(--bg-soft);">
+  <div class="container">
+    <div class="section-head" style="text-align: left; max-width: none; margin: 0 0 40px;">
+      <span class="eyebrow">学习路径</span>
+      <h2 class="section-title" style="text-align: left;">四个阶段,循序渐进</h2>
+    </div>
+
+    <div class="path">
+      <div class="stage">
+        <div class="stage-tag">第一阶段 · 基础语法</div>
+        <h3>第 01-04 课</h3>
+        <p>环境搭建、变量与数据类型、运算符、字符串处理</p>
+        <div class="lesson-chips">
+          <span class="chip"><span class="num">01</span>环境与第一行代码</span>
+          <span class="chip"><span class="num">02</span>变量与数据类型</span>
+          <span class="chip"><span class="num">03</span>运算符与表达式</span>
+          <span class="chip"><span class="num">04</span>字符串处理</span>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-tag">第二阶段 · 数据结构与控制流</div>
+        <h3>第 05-08 课</h3>
+        <p>列表、元组、字典、集合、条件判断、循环、函数与装饰器</p>
+        <div class="lesson-chips">
+          <span class="chip"><span class="num">05</span>列表与元组</span>
+          <span class="chip"><span class="num">06</span>字典与集合</span>
+          <span class="chip"><span class="num">07</span>控制流与异常</span>
+          <span class="chip"><span class="num">08</span>函数与装饰器</span>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-tag">第三阶段 · 进阶主题</div>
+        <h3>第 09-11 课</h3>
+        <p>面向对象编程、模块与包、文件读写、异常处理</p>
+        <div class="lesson-chips">
+          <span class="chip"><span class="num">09</span>面向对象编程</span>
+          <span class="chip"><span class="num">10</span>模块与包</span>
+          <span class="chip"><span class="num">11</span>文件与异常</span>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-tag">第四阶段 · 综合实战</div>
+        <h3>第 12 课</h3>
+        <p>天气查询命令行工具:API 调用、JSON 解析、命令行参数、缓存</p>
+        <div class="lesson-chips">
+          <span class="chip done"><span class="num">12</span>天气查询小工具</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding: 60px 0;">
+  <div class="container">
+    <div class="cta">
+      <h2>准备好开始了吗?</h2>
+      <p>点击下方按钮,从第一课开始你的 Python 学习之旅。无需注册,无需安装,立即可学。</p>
+      <a href="lesson.html?id=intro" class="btn btn-primary" style="padding: 14px 32px; font-size: 16px;">开始第一课 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div>© 2026 Python 学习网站. 为中文初学者打造。</div>
+    <div class="footer-links">
+      <a href="#courses">课程目录</a>
+      <a href="playground.html">代码练习场</a>
+      <a href="#">关于我们</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// 课程数据(与数据文件保持同步)
+const COURSES = [
+  { id: "intro", num: "01", title: "Python 入门与环境搭建", subtitle: "认识 Python,装好环境,跑出第一行代码", level: "beginner", levelText: "入门", duration: "20 分钟", icon: "🚀", summary: "了解 Python 是什么,完成环境安装,写出第一个程序。" },
+  { id: "variables", num: "02", title: "变量与数据类型", subtitle: "Python 有哪几种内置类型?怎么给数据起名字?", level: "beginner", levelText: "入门", duration: "25 分钟", icon: "📦", summary: "掌握变量命名,理解字符串、整数、浮点数、布尔值和 None。" },
+  { id: "operators", num: "03", title: "运算符与表达式", subtitle: "算术、比较、逻辑、成员运算符全掌握", level: "beginner", levelText: "入门", duration: "25 分钟", icon: "🧮", summary: "系统梳理各类运算符,理解优先级与链式比较。" },
+  { id: "strings", num: "04", title: "字符串处理", subtitle: "索引、切片、格式化与常用字符串方法", level: "beginner", levelText: "入门", duration: "30 分钟", icon: "📝", summary: "吃透字符串索引与切片,掌握 f-string 格式化。" },
+  { id: "lists", num: "05", title: "列表与元组", subtitle: "有序集合的增删改查、切片、解包与常用方法", level: "beginner", levelText: "入门", duration: "35 分钟", icon: "📋", summary: "掌握列表增删改查、排序、列表推导式及元组不可变特性。" },
+  { id: "dicts-sets", num: "06", title: "字典与集合", subtitle: "键值映射、哈希表原理、去重与集合运算", level: "beginner", levelText: "入门", duration: "30 分钟", icon: "🗂️", summary: "深入理解字典键值存取及集合交并差补运算。" },
+  { id: "control-flow", num: "07", title: "控制流", subtitle: "if/else、for/while 循环、break/continue、异常处理", level: "beginner", levelText: "入门", duration: "35 分钟", icon: "🔀", summary: "掌握条件判断、循环结构、控制关键字和异常捕获。" },
+  { id: "functions", num: "08", title: "函数", subtitle: "定义与调用、参数类型、返回值、作用域、装饰器入门", level: "beginner", levelText: "入门", duration: "40 分钟", icon: "⚙️", summary: "掌握函数定义、参数类型、作用域链 LEGB、闭包与装饰器。" },
+  { id: "oop", num: "09", title: "面向对象编程(OOP)", subtitle: "类与对象、继承、多态、特殊方法、抽象基类", level: "intermediate", levelText: "进阶", duration: "45 分钟", icon: "🏗️", summary: "学习类与对象、继承多态、__init__/__str__ 等特殊方法及 abc 抽象基类。" },
+  { id: "modules-packages", num: "10", title: "模块与包", subtitle: "import 机制、标准库常用模块、第三方包、虚拟环境", level: "intermediate", levelText: "进阶", duration: "35 分钟", icon: "📦", summary: "掌握 import 系统、常用标准库、第三方包安装及虚拟环境管理。" },
+  { id: "file-io", num: "11", title: "文件与异常", subtitle: "文本/二进制文件读写、CSV/JSON 序列化、上下文管理器", level: "intermediate", levelText: "进阶", duration: "35 分钟", icon: "📄", summary: "掌握 with open 读写文本和二进制文件,CSV 与 JSON 处理。" },
+  { id: "capstone", num: "12", title: "综合实战:天气查询小工具", subtitle: "调用天气 API、解析 JSON、命令行交互、错误处理、打包运行", level: "intermediate", levelText: "综合实战", duration: "60 分钟", icon: "🌤️", summary: "综合运用 requests、json、argparse 完成可运行的天气查询命令行工具。" }
+];
+
+// 渲染课程卡片
+function renderCourses() {
+  const grid = document.getElementById('courseGrid');
+  if (!grid) return;
+  grid.innerHTML = COURSES.map(c => `
+    <article class="course-card">
+      <div class="course-top">
+        <span class="course-id">${c.num}</span>
+        <span class="course-level lv-${c.level}">${c.levelText}</span>
+      </div>
+      <div class="course-icon" style="font-size:26px;margin-bottom:12px;">${c.icon}</div>
+      <h3>${c.title}</h3>
+      <p>${c.subtitle}</p>
+      <div class="course-meta">
+        <span>${c.duration}</span>
+        <a href="lesson.html?id=${c.id}">开始学习 →</a>
+      </div>
+    </article>
+  `).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderCourses();
+
+  // 移动端菜单
+  const toggle = document.getElementById('navToggle');
+  const links = document.getElementById('navLinks');
+  if (toggle && links) {
+    toggle.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+  }
+
+  // 高亮当前导航
+  const path = location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href && !href.startsWith('#') && path === href.split('/').pop()) {
+      a.classList.add('active');
+    }
+  });
+});
+</script>
+</body>
+</html>
