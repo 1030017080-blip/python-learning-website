@@ -26,6 +26,7 @@
       <a href="#path">学习路径</a>
       <a href="playground.html">代码练习场</a>
       <a href="lesson.html?id=intro" class="nav-cta">开始学习</a>
+      <button class="nav-toggle theme-toggle" id="themeToggle" aria-label="切换深浅色模式" title="切换深浅色模式">🌓</button>
     </div>
 
     <button class="nav-toggle" id="navToggle" aria-label="切换菜单">☰</button>
@@ -204,7 +205,7 @@
   </div>
 </footer>
 
-<script>
+<script src="assets/js/theme.js"></script>
 // 课程数据(与数据文件保持同步)
 const COURSES = [
   { id: "intro", num: "01", title: "Python 入门与环境搭建", subtitle: "认识 Python,装好环境,跑出第一行代码", level: "beginner", levelText: "入门", duration: "20 分钟", icon: "🚀", summary: "了解 Python 是什么,完成环境安装,写出第一个程序。" },
@@ -218,7 +219,11 @@ const COURSES = [
   { id: "oop", num: "09", title: "面向对象编程(OOP)", subtitle: "类与对象、继承、多态、特殊方法、抽象基类", level: "intermediate", levelText: "进阶", duration: "45 分钟", icon: "🏗️", summary: "学习类与对象、继承多态、__init__/__str__ 等特殊方法及 abc 抽象基类。" },
   { id: "modules-packages", num: "10", title: "模块与包", subtitle: "import 机制、标准库常用模块、第三方包、虚拟环境", level: "intermediate", levelText: "进阶", duration: "35 分钟", icon: "📦", summary: "掌握 import 系统、常用标准库、第三方包安装及虚拟环境管理。" },
   { id: "file-io", num: "11", title: "文件与异常", subtitle: "文本/二进制文件读写、CSV/JSON 序列化、上下文管理器", level: "intermediate", levelText: "进阶", duration: "35 分钟", icon: "📄", summary: "掌握 with open 读写文本和二进制文件,CSV 与 JSON 处理。" },
-  { id: "capstone", num: "12", title: "综合实战:天气查询小工具", subtitle: "调用天气 API、解析 JSON、命令行交互、错误处理、打包运行", level: "intermediate", levelText: "综合实战", duration: "60 分钟", icon: "🌤️", summary: "综合运用 requests、json、argparse 完成可运行的天气查询命令行工具。" }
+  { id: "capstone", num: "12", title: "综合实战:天气查询小工具", subtitle: "调用天气 API、解析 JSON、命令行交互、错误处理、打包运行", level: "intermediate", levelText: "综合实战", duration: "60 分钟", icon: "🌤️", summary: "综合运用 requests、json、argparse 完成可运行的天气查询命令行工具。" },
+  { id: "flask", num: "13", title: "Python Web 开发：Flask 入门", subtitle: "搭建第一个 Web 应用、路由、模板与表单", level: "intermediate", levelText: "进阶", duration: "50 分钟", icon: "🌐", summary: "使用 Flask 构建轻量级 Web 应用，掌握路由定义、模板渲染、表单处理和静态文件。" },
+  { id: "pandas", num: "14", title: "数据分析入门：Pandas", subtitle: "DataFrame、数据清洗、分组聚合与可视化", level: "intermediate", levelText: "进阶", duration: "55 分钟", icon: "📊", summary: "掌握 Pandas 核心数据结构 Series 和 DataFrame，完成数据导入、清洗、分组聚合和基础可视化。" },
+  { id: "pytest", num: "15", title: "自动化测试：pytest", subtitle: "编写单元测试、断言、fixture 与参数化测试", level: "intermediate", levelText: "进阶", duration: "45 分钟", icon: "🧪", summary: "掌握 pytest 基础用法，编写可维护的单元测试，使用 fixture 管理测试数据，参数化测试覆盖多种场景。" },
+  { id: "ml-basics", num: "16", title: "机器学习基础：scikit-learn", subtitle: "线性回归、分类、模型评估与预测", level: "intermediate", levelText: "进阶", duration: "60 分钟", icon: "🤖", summary: "使用 scikit-learn 构建第一个机器学习模型，掌握数据拆分、训练、预测和模型评估指标。" }
 ];
 
 // 渲染课程卡片
@@ -264,6 +269,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+  // 主题切换初始化
+  if (window.initThemeToggle) window.initThemeToggle();
 </script>
 </body>
 </html>

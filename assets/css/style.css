@@ -3,15 +3,16 @@
    ============================================ */
 
 :root {
-  --bg: #0d1117;
-  --bg-soft: #131a23;
-  --surface: #171e28;
-  --surface-2: #1e2634;
-  --border: #26303f;
-  --border-soft: #1f2836;
-  --text: #e6edf3;
-  --text-dim: #9aa7b6;
-  --text-faint: #6b7889;
+  /* 浅色模式变量 */
+  --bg: #f7f9fc;
+  --bg-soft: #ffffff;
+  --surface: #f3f5f9;
+  --surface-2: #e9edf3;
+  --border: #d1d9e6;
+  --border-soft: #e2e8f0;
+  --text: #1e293b;
+  --text-dim: #64748b;
+  --text-faint: #94a3b8;
   --brand: #ffd43b;
   --brand-2: #4c9aff;
   --brand-3: #4ec9b0;
@@ -21,10 +22,43 @@
   --purple: #bc8cff;
   --radius: 14px;
   --radius-sm: 9px;
-  --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
   --font: "Inter", "PingFang SC", "Microsoft YaHei", system-ui, -apple-system, sans-serif;
   --mono: "JetBrains Mono", "Fira Code", Consolas, "Courier New", monospace;
   --max: 1180px;
+  --code-bg: #f1f5f9;
+}
+
+/* 深色模式：通过 .dark-theme class 覆盖 */
+.dark-theme {
+  --bg: #0d1117;
+  --bg-soft: #131a23;
+  --surface: #171e28;
+  --surface-2: #1e2634;
+  --border: #26303f;
+  --border-soft: #1f2836;
+  --text: #e6edf3;
+  --text-dim: #9aa7b6;
+  --text-faint: #6b7889;
+  --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+  --code-bg: #1e232e;
+}
+
+/* 系统偏好深色时的默认（未手动设置主题时） */
+@media (prefers-color-scheme: dark) and (not (prefers-color-scheme: light)) {
+  :root:not(.light-theme) {
+    --bg: #0d1117;
+    --bg-soft: #131a23;
+    --surface: #171e28;
+    --surface-2: #1e2634;
+    --border: #26303f;
+    --border-soft: #1f2836;
+    --text: #e6edf3;
+    --text-dim: #9aa7b6;
+    --text-faint: #6b7889;
+    --shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    --code-bg: #1e232e;
+  }
 }
 
 * {

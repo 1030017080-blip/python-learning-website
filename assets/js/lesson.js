@@ -3,10 +3,11 @@
 (() => {
   const COURSES = [];
 
-  // 合并三部分数据
+  // 合并四部分数据
   if (window.COURSES_PART1) COURSES.push(...window.COURSES_PART1);
   if (window.COURSES_PART2) COURSES.push(...window.COURSES_PART2);
   if (window.COURSES_PART3) COURSES.push(...window.COURSES_PART3);
+  if (window.COURSES_PART4) COURSES.push(...window.COURSES_PART4);
 
   const COURSE_BY_ID = {};
   COURSES.forEach(c => { COURSE_BY_ID[c.id] = c; });
@@ -104,6 +105,11 @@
     if (els.progressFill) {
       const pct = COURSES.length ? (done / COURSES.length) * 100 : 0;
       els.progressFill.style.width = `${pct}%`;
+    }
+    // 全部课程完成且至少完成过一节，显示证书入口
+    const certBtn = document.getElementById('certBtn');
+    if (certBtn) {
+      certBtn.style.display = (done === COURSES.length && done > 0) ? 'inline-block' : 'none';
     }
   }
 
@@ -332,6 +338,14 @@
       els.navCta.href = `lesson.html?id=${course.id}`;
     }
 
+    // 证书按钮跳转
+    const certBtn = document.getElementById('certBtn');
+    if (certBtn) {
+      certBtn.addEventListener('click', () => {
+        location.href = 'certificate.html';
+      });
+    }
+
     // 进度：如果当前课有测验且全部正确，可视为完成（这里简化：访问即标记，或可自行扩展）
     updateProgress();
   }
@@ -366,4 +380,6 @@
       toggle.setAttribute('aria-expanded', open);
     });
   }
+  // 主题切换初始化
+  if (window.initThemeToggle) window.initThemeToggle();
 })();
