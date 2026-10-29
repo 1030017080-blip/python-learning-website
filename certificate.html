@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>学习证书 | Python 学习网站</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&family=Noto+Serif+SC:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .cert-page { padding: 40px 20px; min-height: 100vh; }
+    .cert-container {
+      max-width: 800px;
+      margin: 40px auto;
+      background: var(--surface);
+      border: 2px solid var(--brand);
+      border-radius: 24px;
+      padding: 60px 50px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .cert-container::before {
+      content: "";
+      position: absolute;
+      top: -50px; left: -50px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, var(--brand), transparent 70%);
+      opacity: 0.15;
+    }
+    .cert-seal {
+      position: absolute;
+      top: 30px; right: 40px;
+      width: 90px; height: 90px;
+      border: 3px solid var(--brand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      opacity: 0.9;
+    }
+    .cert-title {
+      font-family: "Noto Serif SC", serif;
+      font-size: 34px;
+      font-weight: 800;
+      color: var(--text);
+      margin: 20px 0 10px;
+    }
+    .cert-subtitle {
+      color: var(--text-dim);
+      font-size: 18px;
+      margin-bottom: 40px;
+    }
+    .cert-recipient {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--brand);
+      margin: 25px 0;
+    }
+    .cert-detail {
+      font-size: 17px;
+      color: var(--text-dim);
+      margin: 10px 0;
+    }
+    .cert-detail strong { color: var(--text); }
+    .cert-divider {
+      width: 60%;
+      height: 1px;
+      background: var(--border);
+      margin: 40px auto;
+    }
+    .cert-date {
+      font-size: 15px;
+      color: var(--text-faint);
+      margin-top: 30px;
+    }
+    .cert-actions {
+      margin-top: 50px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-download {
+      background: var(--brand);
+      color: #1a1200;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+    .btn-download:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(255, 212, 59, 0.3);
+    }
+    .btn-download:disabled { opacity: 0.6; cursor: not-allowed; }
+    .cert-msg {
+      margin-top: 30px;
+      font-size: 15px;
+      color: var(--text-faint);
+      min-height: 24px;
+    }
+    .not-complete {
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .not-complete .seal { font-size: 120px; opacity: 0.15; margin-bottom: 20px; }
+    .not-complete h2 { color: var(--text); margin-bottom: 12px; }
+    .not-complete p { color: var(--text-dim); margin-bottom: 30px; }
+    @media (max-width: 640px) {
+      .cert-container { padding: 40px 20px; margin: 20px 16px; }
+      .cert-title { font-size: 26px; }
+      .cert-recipient { font-size: 22px; }
+    }
+    @media print {
+      body { background: #fff !important; }
+      .cert-actions { display: none !important; }
+      .cert-container { box-shadow: none !important; border: 2px solid #000 !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-mark">P</div>
+        <span>Python<span class="dot">.</span>学习</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">首页</a>
+        <a href="index.html#courses">课程</a>
+        <a href="playground.html">代码练习场</a>
+        <button class="nav-toggle theme-toggle" id="themeToggle" aria-label="切换深浅色模式" title="切换深浅色模式">🌓</button>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="切换菜单">☰</button>
+    </div>
+  </nav>
+
+  <div class="cert-page">
+    <div id="certNotComplete" class="not-complete" style="display:none;">
+      <div class="seal">🔒</div>
+      <h2>证书尚未解锁</h2>
+      <p>请先完成所有课程的测验，全部答对后即可生成学习证书。</p>
+      <a href="index.html#courses" class="btn btn-primary" style="padding:12px 28px;">去学习课程</a>
+    </div>
+
+    <div id="certComplete" class="cert-container" style="display:none;">
+      <div class="cert-seal">🐍</div>
+      <h1 class="cert-title">Python 学习证书</h1>
+      <p class="cert-subtitle">特证明以下学员已完成 Python 学习网站全部课程</p>
+
+      <div class="cert-recipient" id="certName">学习者</div>
+
+      <div class="cert-divider"></div>
+
+      <div class="cert-detail">
+        <strong>课程数量：</strong><span id="certCount">0</span> 门
+      </div>
+      <div class="cert-detail">
+        <strong>完成日期：</strong><span id="certDate"></span>
+      </div>
+      <div class="cert-detail">
+        <strong>证书编号：</strong><span id="certNo"></span>
+      </div>
+
+      <div class="cert-date">Python 学习网站 &nbsp;|&nbsp; 免费中文 Python 编程教程</div>
+
+      <div class="cert-actions">
+        <button class="btn-download" id="downloadCert">📥 下载证书图片</button>
+        <a href="index.html" class="btn-ghost" style="padding:14px 30px;border-radius:10px;">返回首页</a>
+      </div>
+      <div class="cert-msg" id="certMsg"></div>
+    </div>
+
+    <div id="certLoading" style="text-align:center;padding:60px 20px;color:var(--text-dim);">加载中…</div>
+  </div>
+
+  <script src="assets/js/theme.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script>
+    (() => {
+      const COURSE_IDS = [
+        "intro","variables","operators","strings","lists","dicts-sets","control-flow","functions",
+        "oop","modules-packages","file-io","capstone","flask","pandas","pytest","ml-basics"
+      ];
+      const els = {
+        notComplete: document.getElementById('certNotComplete'),
+        complete: document.getElementById('certComplete'),
+        loading: document.getElementById('certLoading'),
+        name: document.getElementById('certName'),
+        count: document.getElementById('certCount'),
+        date: document.getElementById('certDate'),
+        no: document.getElementById('certNo'),
+        msg: document.getElementById('certMsg'),
+        download: document.getElementById('downloadCert')
+      };
+
+      // 读取进度
+      let completed = new Set(JSON.parse(localStorage.getItem('py_learn_progress') || '[]'));
+      completed = new Set([...completed].filter(id => COURSE_IDS.includes(id)));
+
+      // 姓名：优先用已保存的，否则提示输入
+      let learnerName = localStorage.getItem('py_learner_name') || '';
+
+      async function init() {
+        els.loading.style.display = 'block';
+
+        const doneCount = completed.size;
+        const allDone = doneCount === COURSE_IDS.length;
+
+        if (!allDone) {
+          els.loading.style.display = 'none';
+          els.notComplete.style.display = 'block';
+          return;
+        }
+
+        // 生成证书编号
+        const now = new Date();
+        const certNo = 'PY-' + now.getFullYear() + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0') + '-' + Math.floor(Math.random()*10000).toString().padStart(4,'0');
+
+        // 姓名
+        if (!learnerName) {
+          learnerName = prompt('请输入证书上的姓名（可留空使用“学习者”）:') || '学习者';
+          localStorage.setItem('py_learner_name', learnerName);
+        }
+
+        els.name.textContent = learnerName;
+        els.count.textContent = doneCount;
+        els.date.textContent = now.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' });
+        els.no.textContent = certNo;
+
+        els.loading.style.display = 'none';
+        els.complete.style.display = 'block';
+
+        // 下载证书图片
+        els.download.addEventListener('click', async () => {
+          els.download.disabled = true;
+          els.download.textContent = '生成中…';
+          try {
+            const canvas = await html2canvas(document.getElementById('certComplete'), {
+              scale: 2,
+              useCORS: true,
+              logging: false,
+              backgroundColor: null
+            });
+            const link = document.createElement('a');
+            link.download = `Python_学习证书_${learnerName}_${certNo}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            els.msg.textContent = '证书已下载';
+            els.msg.style.color = 'var(--green)';
+          } catch (e) {
+            console.error(e);
+            els.msg.textContent = '下载失败，请尝试浏览器打印（Ctrl+P）另存为 PDF';
+            els.msg.style.color = 'var(--red)';
+          } finally {
+            els.download.disabled = false;
+            els.download.textContent = '📥 下载证书图片';
+          }
+        });
+      }
+
+      // 主题切换
+      if (window.initThemeToggle) window.initThemeToggle();
+
+      init();
+    })();
+  </script>
+</body>
+</html>
