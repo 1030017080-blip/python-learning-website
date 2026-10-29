@@ -275,6 +275,21 @@
       }
       return renderSection(section);
     }).join('');
+
+    // 单独渲染 quiz（如果有）
+    if (course.quiz && Array.isArray(course.quiz)) {
+      course.quiz.forEach((q, i) => {
+        const qIdx = quizCounter + i + 1;
+        const qSection = { ...q, t: 'quiz', qIdx: qIdx };
+        html += renderQuiz(qSection);
+      });
+    }
+
+    // 单独渲染 exercise（如果有）
+    if (course.exercise) {
+      html += renderExercise(course.exercise);
+    }
+
     els.lessonContent.innerHTML = html;
 
     // 代码块复制按钮
