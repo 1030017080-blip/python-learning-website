@@ -174,7 +174,8 @@
   }
 
   // 将 handleQuizAnswer 挂到全局，供 HTML onclick 调用
-  const quizState = {}; // qIdx -> { answered, correct }
+  const QUIZ_STATE_KEY = 'py_quiz_state';
+  let quizState = JSON.parse(localStorage.getItem(QUIZ_STATE_KEY) || '{}');
 
   window.handleQuizAnswer = (qIdx, selectedIdx) => {
     const optionsEl = document.getElementById(`quiz-options-${qIdx}`);
@@ -212,11 +213,16 @@
       feedbackEl.textContent = `❌ 不正确。${quizData.explain}`;
     }
 
-    // 更新本课得分
-    quizState[qIdx] = { answered: true, correct: isCorrect };
+    // 更新本课得分（持久化到 localStorage，按课程 id 分组）
+    if (!quizState[currentId]) quizState[currentId] = {};
+    quizState[currentId][qIdx] = { answered: true, correct: isCorrect, userIdx: selectedIdx };
+    localStorage.setItem(QUIZ_STATE_KEY, JSON.stringify(quizState));
+
+    // 计算本课得分
     let correctCount = 0;
     let answeredCount = 0;
-    Object.values(quizState).forEach(s => {
+    const courseQuizState = quizState[currentId] || {};
+    Object.values(courseQuizState).forEach(s => {
       if (s.answered) {
         answeredCount += 1;
         if (s.correct) correctCount += 1;
@@ -346,8 +352,63 @@
       });
     }
 
-    // 进度：如果当前课有测验且全部正确，可视为完成（这里简化：访问即标记，或可自行扩展）
+    // 进度：如果当前课有测验且全部正确，可视为完成
     updateProgress();
+
+    // 恢复测验状态（持久化到 localStorage）
+    restoreQuizState();
+  }
+
+  // ---------- 测验状态恢复 ----------
+  // 页面加载后，根据 localStorage 保存的测验状态，恢复已回答的测验显示
+  function restoreQuizState() {
+    const saved = quizState[currentId];
+    if (!saved) return;
+
+    const quizEls = els.lessonContent.querySelectorAll('.quiz');
+    quizEls.forEach(quizEl => {
+      const qIdxEl = quizEl.querySelector('.q-idx');
+      if (!qIdxEl) return;
+      const qIdx = parseInt(qIdxEl.textContent.replace('Q', ''), 10);
+      const state = saved[qIdx];
+      if (!state || !state.answered) return;
+
+      const options = quizEl.querySelectorAll('.option');
+      const feedbackEl = quizEl.querySelector('.quiz-feedback');
+      const scoreEl = quizEl.querySelector('.quiz-score');
+
+      // 找到正确答案索引：需要重新读取 quiz 数据
+      let quizData = null;
+      COURSES.forEach(c => {
+        c.sections.forEach(s => {
+          if (s.t === 'quiz' && (s.qIdx || 1) === qIdx) quizData = s;
+        });
+      });
+      if (!quizData) return;
+      const correctIdx = quizData.answer;
+
+      options.forEach((opt, i) => {
+        opt.style.cursor = 'default';
+        opt.onclick = null;
+        if (i === correctIdx) {
+          opt.classList.add('correct');
+        } else if (i === state.userIdx && state.userIdx !== correctIdx) {
+          opt.classList.add('wrong');
+        } else if (i === state.userIdx && state.userIdx === correctIdx) {
+          opt.classList.add('correct');
+        }
+      });
+
+      if (feedbackEl) {
+        if (state.correct) {
+          feedbackEl.className = 'quiz-feedback show ok';
+          feedbackEl.textContent = `✅ 正确！`;
+        } else {
+          feedbackEl.className = 'quiz-feedback show no';
+          feedbackEl.textContent = `❌ 不正确。`;
+        }
+      }
+    });
   }
 
   // ---------- 侧边栏 ----------
