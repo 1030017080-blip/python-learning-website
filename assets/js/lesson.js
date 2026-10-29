@@ -444,8 +444,16 @@
   // ---------- 启动 ----------
 
   renderSidebar();
-  renderLesson(COURSE_BY_ID[currentId]);
-  updateProgress();
+  const course = COURSE_BY_ID[currentId];
+  if (course) {
+    renderLesson(course);
+    updateProgress();
+  } else {
+    els.lessonContent.innerHTML = `<div style="padding:40px;text-align:center;color:var(--text-faint);">
+      <p>课程 "${currentId}" 未找到，请返回首页选择课程。</p>
+      <a href="index.html" class="btn btn-primary">返回首页</a>
+    </div>`;
+  }
 
   // 移动端菜单
   const toggle = document.getElementById('navToggle');
@@ -458,4 +466,10 @@
   }
   // 主题切换初始化
   if (window.initThemeToggle) window.initThemeToggle();
+
+  // 将关键函数挂载到 window，便于调试和外部调用
+  window.renderLesson = renderLesson;
+  window.renderQuiz = renderQuiz;
+  window.renderExercise = renderExercise;
+  window.renderSection = renderSection;
 })();
